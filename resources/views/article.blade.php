@@ -26,18 +26,18 @@
  <div class="page-header">      
  <h5>نظرات</h5> 
   </div>  
- @foreach ($comments as $comment)
+ @foreach ($comments as $comment )
  <div class="row">
     <div class="col-md-12">
         <div class="card">
             <div class="card-body">   
                 <div class="message-item">
                     <div class="message-item-content">  
-                        <p>{{ $comment->content }}</p>
+                        <p>{{ !empty($comment->content) ? $comment->content: '' }}</p>
                     </div> 
                     <span class="time small text-muted font-italic">
-                         <h>{{ $comment->user->name }}</h>
-                        <p>{{ $comment->created_at }}</p>
+                         <h>{{ !empty($comment->user) ? $comment->user->name: '' }}</h>
+                        <p>{{ !empty($comment->created_at) ? $comment->created_at: '' }}</p>
                     </span> 
                  </div>    
             </div>

@@ -9,7 +9,7 @@
              <select class="js-example-basic-single" name="sortBy" id="sortBy">
                 <option>انتخاب</option>
                  <option value="id">شماره مقاله</option>
-                 <option value="user_id">تگارنده</option>
+                 <option value="user_id">نویسنده</option>
                 <option value="title">عنوان</option>
                 <option value="created_at">تاریخ</option> 
             </select>          
@@ -31,8 +31,8 @@
                                 <th scope="col">ردیف</th>
                                 <th scope="col">شماره مقاله</th>
                                 <th scope="col"> عنوان</th>
-                                <th scope="col">محتوا</th>
                                 <th scope="col">نویسنده</th>
+                                <th scope="col">تاریخ</th>
                                 </tr>
                                 </thead>
                                 <tbody>  

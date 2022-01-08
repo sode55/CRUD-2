@@ -88,11 +88,8 @@
                 <ul>
                  <li class="navigation-divider">اصلی</li>
                  <li class="open">
-                 <a href="index.html">
-                    <i class="nav-link-icon" data-feather="bar-chart-2"></i>
+                 <a href="route('article.create')}}">
                     <span>داشبورد</span>
-                    <a href="{{route('article.create')}}">
-                </a>
                 <ul>
                 </ul>
             </li>
@@ -464,7 +461,7 @@
     <main class="main-content">
         <div class="container">
         <div class="page-header">
-            <small class="">خوش آمدید، <span class="text-primary" >{{Auth::user()->id}}</span></small>
+            <small class="">خوش آمدید، <span class="text-primary" >{{ optional(Auth::user())->name }}</span></small>
         </div>            
                <div class="row">
                 <div class="col-md-12">

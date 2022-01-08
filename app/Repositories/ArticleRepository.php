@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Article;
+use App\Models\Comment;
 
 class ArticleRepository
 {
@@ -22,12 +23,6 @@ class ArticleRepository
 
         return $article;
     }
-        public function comment($id)
-        {
-            $comment = Article::find($id)->comments;
-
-            return $comment;
-        }
     public function article($id)
     {
         $article = Article::find($id);
@@ -41,13 +36,6 @@ class ArticleRepository
         $article->title = $input['title'];
         $article->content = $input['content'];
         $article->save();
-
-        return $article;
-    }
-    public function delete($id)
-    {
-        $article = Article::find($id);
-        $article->delete();
 
         return $article;
     }

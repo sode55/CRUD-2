@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ArticleStoreRequest;
 use App\Repositories\ArticleRepository;
-use App\Models\Article;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Models\Article;
 
 class ArticleController extends Controller
 {
@@ -20,7 +20,7 @@ class ArticleController extends Controller
     public function create(Request $request)
     {
         $articles = $this->articleRepository->list()->sortBy($request->sortBy);
-        return view('dashboard')
+        return redirect('/')
             ->with('articles', $articles)
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -29,28 +29,28 @@ class ArticleController extends Controller
         $this->articleRepository->save($request, Auth::id());
         return redirect('/')->with('message', 'مقاله شما با موفقیت ثبت شد.');
     }
-    public function show($id)
+    public function show(Article $article)
     {
-        $comments = $this->articleRepository->comment($id);
-        $article = $this->articleRepository->article($id);
+        $article = $article->first();
+        $comments = $article->comments;  
         return view('article')
             ->with('article', $article)
             ->with('comments', $comments);
     }
-    public function edit($id)
+    public function edit(Article $article)
     {
-        $article = $this->articleRepository->article($id);
         return view('edit')->with('article', $article);
     }
     public function update(ArticleStoreRequest $request)
     {
          $this->articleRepository->edit($request);
-        return redirect('/')->with('message', 'مقاله شما با موفقیت ویرایش شد.');
+        return redirect('/')->with('success', 'مقاله شما با موفقیت ویرایش شد.');
     }
-    public function destroy($id)
+    public function destroy(Article $article)
     {
-        $article = Article::find($id);
-        $article->delete();
-        return back()->with('message', 'مقاله شما با موفقیت حذف شد.');
+        if ( $article->first()) {
+            $article->delete();
+        }
+        return back()->with('success', 'مقاله شما با موفقیت حذف شد.');
     }
 }
